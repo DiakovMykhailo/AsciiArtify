@@ -33,7 +33,6 @@
   kubectl get pod -n argocd -w
   ```
 ![kubectl create namespace argocd](3.png)
-![kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml]
 ![kubectl get all -n argocd](4.png)
 
 ### Step 3: Accessing the ArgoCD Web Interface
