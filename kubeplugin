@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# Параметри командного рядка
+NAMESPACE=$1
+RESOURCE_TYPE=$2
+
+# Перевірка наявності необхідних параметрів
+if [ -z "$NAMESPACE" ] || [ -z "$RESOURCE_TYPE" ]; then
+  echo "Usage: $0 <namespace> <resource_type>"
+  exit 1
+fi
+
+# Отримання статистики використання ресурсів з Kubernetes
+kubectl get $RESOURCE_TYPE -n $NAMESPACE -o custom-columns=NAME:.metadata.name,CPU:.usage.cpu,MEMORY:.usage.memory --no-headers | while read line
+do
+  # Вивід статистики на консоль
+  echo "$RESOURCE_TYPE, $NAMESPACE, $line"
+done
